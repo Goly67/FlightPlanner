@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Planning Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            background-image: url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative; /* Make the form-group a positioned container */
+        }
+
+        label {
+            position: absolute;
+            top: 0.75rem;
+            left: 1rem;
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 470px;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+    }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3);
+        }
+
+        input:focus + label, input:not(:placeholder-shown) + label,
+        select:focus + label, select:not(:placeholder-shown) + label {
+            top: -0.5rem;
+            left: 0.5rem;
+            font-size: 0.8rem;
+            padding: 0 0.5rem;
+            background-color: white;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="C:\Users\USER\Downloads\Flightplan_System\firebaseConfig.js"></script>
+<body>
+    <div class="container">
+        <h1>Flight Planning</h1>
+        <form id="flightPlanForm">
+            <div class="form-group">
+                <input type="text" id="callsign" name="callsign" required placeholder=" ">
+                <label for="callsign">Callsign</label>
+            </div>
+            <div class="form-group">
+                <select id="aircraft" name="aircraft" required>
+                    <option value="" disabled selected>Select Aircraft</option>
+                    <option value="Airbus A220">Airbus A220</option>
+                    <option value="Airbus A320">Airbus A320</option>
+                    <option value="Airbus A330-300">Airbus A330-300</option>
+                    <option value="Airbus A350-900">Airbus A350-900</option>
+                    <option value="Boeing 717">Boeing 717</option>
+                    <option value="Boeing 727">Boeing 727</option>
+                    <option value="Boeing 737">Boeing 737</option>
+                    <option value="Boeing 757">Boeing 757</option>
+                    <option value="Boeing 787">Boeing 787</option>
+                    <option value="Boeing 777">Boeing 777</option>
+                    <option value="Piper M350">Piper M350</option>
+                    <option value="Bae Systems Hawk T1">Bae Systems Hawk T1</option>
+                    <option value="Eurofighter Typhoon">Eurofighter Typhoon</option>
+                    <option value="Bombardier Dash 8-Q400">Bombardier Dash 8-Q400</option>
+                    <option value="Cessna 150A">Cessna 150A</option>
+                    <option value="Cessna Citation II">Cessna Citation II</option>
+                    <option value="Fokker 100">Fokker 100</option>
+                    <option value="Beechcraft Baron G58">Beechcraft Baron G58</option>
+                    <option value="MD-11">MD-11</option>
+                </select>
+                <label for="aircraft">Aircraft</label>
+            </div>
+            <div class="form-group">
+                <select id="flightType" name="flightType" required>
+                    <option value="" disabled selected></option>
+                    <option value="IFR">IFR</option>
+                    <option value="VFR">VFR</option>
+                </select>
+                <label for="flightType">IFR/VFR</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="sid" name="sid" placeholder=" ">
+                <label for="sid">SID (Optional)</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="cruisingLevel" name="cruisingLevel" required placeholder=" ">
+                <label for="cruisingLevel">Cruising Level</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="departure" name="departure" required placeholder=" ">
+                <label for="departure">Departure</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="arrival" name="arrival" required placeholder=" ">
+                <label for="arrival">Arrival</label>
+            </div>
+            <button type="submit">Submit Flight Plan</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('flightPlanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = {
+                id: Date.now(),
+                callsign: document.getElementById('callsign').value,
+                aircraft: document.getElementById('aircraft').value,
+                flightType: document.getElementById('flightType').value,
+                sid: document.getElementById('sid').value, // No longer required
+                cruisingLevel: document.getElementById('cruisingLevel').value,
+                departure: document.getElementById('departure').value,
+                arrival: document.getElementById('arrival').value,
+                squawk: ''
+            };
+            let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
+            flightPlans.push(formData);
+            localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
+            alert('Flight plan submitted successfully!');
+            window.location.href = 'file:///C:/Users/USER/Downloads/Flightplan%20System/FlightplanViewer.html';
+        });
+    </script>
+</body>
+</html>
