@@ -89,7 +89,7 @@
         }
 
         input:focus + label, input:not(:placeholder-shown) + label,
-        select:focus + label, select:not(:placeholder-shown) + label {
+        select:focus + label, select:not([value=""]) + label {
             top: -0.5rem;
             left: 0.5rem;
             font-size: 0.8rem;
@@ -173,11 +173,37 @@
                 <label for="cruisingLevel">Cruising Level</label>
             </div>
             <div class="form-group">
-                <input type="text" id="departure" name="departure" required placeholder=" ">
+                <select id="departure" name="departure" required>
+                    <option value="" disabled selected>Select Departure</option>
+                    <option value="MDAB">Arroyo Barril [MDAB]</option>
+                    <option value="MDCR">Cabo Rojo [MDCR]</option>
+                    <option value="MDST">Cibao [MDST]</option>
+                    <option value="MDPC">Punta Cana [MDPC]</option>
+                    <option value="EFKT">Kittilä [EFKT]</option>
+                    <option value="MTCA">Antoine-Simon [MTCA]</option>
+                    <option value="LYTV">Tivat [LYTV]</option>
+                    <option value="GCLP">Gran Canaria [GCLP]</option>
+                    <option value="LEMH">Menorca [LEMH]</option>
+                    <option value="EGKK">Gatwick [EGKK]</option>
+                    <option value="EGHI">Southampton [EGHI]</option>
+                </select>
                 <label for="departure">Departure</label>
             </div>
             <div class="form-group">
-                <input type="text" id="arrival" name="arrival" required placeholder=" ">
+                <select id="arrival" name="arrival" required>
+                    <option value="" disabled selected>Select Arrival</option>
+                    <option value="MDAB">Arroyo Barril [MDAB]</option>
+                    <option value="MDCR">Cabo Rojo [MDCR]</option>
+                    <option value="MDST">Cibao [MDST]</option>
+                    <option value="MDPC">Punta Cana [MDPC]</option>
+                    <option value="EFKT">Kittilä [EFKT]</option>
+                    <option value="MTCA">Antoine-Simon [MTCA]</option>
+                    <option value="LYTV">Tivat [LYTV]</option>
+                    <option value="GCLP">Gran Canaria [GCLP]</option>
+                    <option value="LEMH">Menorca [LEMH]</option>
+                    <option value="EGKK">Gatwick [EGKK]</option>
+                    <option value="EGHI">Southampton [EGHI]</option>
+                </select>
                 <label for="arrival">Arrival</label>
             </div>
             <button type="submit">Submit Flight Plan</button>
@@ -201,6 +227,7 @@
             flightPlans.push(formData);
             localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
             alert('Flight plan submitted successfully!');
+            window.location.reload(); // Reload the page after submission
         });
     </script>
 </body>
