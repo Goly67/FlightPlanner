@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://www.iconpacks.net/icons/2/free-airplane-icon-1755-thumb.png" type="image/x-icon">
+    <link rel="icon" href="" type="image/x-icon">
     <title>Flight Planning Form</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        
+
         :root {
             --primary-color: #3498db;
             --secondary-color: #2c3e50;
@@ -154,6 +154,9 @@
                 <input type="text" id="callsign" name="callsign" required placeholder=" ">
                 <label for="callsign">Callsign</label>
             </div>
+            <div class="search-box">
+                <input type="text" id="aircraftSearch" placeholder="Search Aircraft">
+            </div>
             <div class="form-group">
                 <select id="aircraft" name="aircraft" required>
                     <option value="" disabled selected>Select Aircraft</option>
@@ -191,11 +194,13 @@
                 <input type="text" id="cruisingLevel" name="cruisingLevel" required placeholder=" ">
                 <label for="cruisingLevel">Cruising Level</label>
             </div>
-
+                        <div class="form-group">
+                <input type="text" id="sid" name="sid" placeholder="">
+                <label for="sid">SID (Optional)</label>
+            </div>
             <div class="search-box">
                 <input type="text" id="departureSearch" placeholder="Search Departure Airport">
             </div>
-
             <div class="form-group">
                 <select id="departure" name="departure" required>
                     <option value="" disabled selected>Select Departure</option>
@@ -213,11 +218,9 @@
                 </select>
                 <label for="departure">Departure</label>
             </div>
-
             <div class="search-box">
                 <input type="text" id="arrivalSearch" placeholder="Search Arrival Airport">
             </div>
-
             <div class="form-group">
                 <select id="arrival" name="arrival" required>
                     <option value="" disabled selected>Select Arrival</option>
@@ -248,7 +251,8 @@
                 flightRule: document.getElementById('flightRule').value,
                 cruisingLevel: document.getElementById('cruisingLevel').value,
                 departure: document.getElementById('departure').value,
-                arrival: document.getElementById('arrival').value
+                arrival: document.getElementById('arrival').value,
+                sid: document.getElementById('sid').value || 'Radaw vectors'
             };
             let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
             flightPlans.push(formData);
@@ -273,6 +277,10 @@
 
         document.getElementById('arrivalSearch').addEventListener('input', function() {
             filterOptions(this, document.getElementById('arrival'));
+        });
+
+        document.getElementById('aircraftSearch').addEventListener('input', function() {
+            filterOptions(this, document.getElementById('aircraft'));
         });
     </script>
 </body>
