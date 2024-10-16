@@ -56,7 +56,7 @@
         }
 
         .form-group {
-            position: relative; /* Make the form-group a positioned container */
+            position: relative;
         }
 
         label {
@@ -67,11 +67,10 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             pointer-events: none;
-            font-weight: bold;
         }
 
         input, select {
-            width: 470px;
+            width: 100%;
             padding: 0.75rem 1rem;
             border: 2px solid var(--primary-color);
             border-radius: 8px;
@@ -79,7 +78,7 @@
             color: var(--text-color);
             background-color: rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
-    }
+        }
 
         input:focus, select:focus {
             outline: none;
@@ -121,9 +120,6 @@
         }
     </style>
 </head>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-<script src="C:\Users\USER\Downloads\Flightplan_System\firebaseConfig.js"></script>
 <body>
     <div class="container">
         <h1>Flight Planning</h1>
@@ -202,7 +198,6 @@
             flightPlans.push(formData);
             localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
             alert('Flight plan submitted successfully!');
-            window.location.href = 'file:///C:/Users/USER/Downloads/Flightplan%20System/FlightplanViewer.html';
         });
     </script>
 </body>
