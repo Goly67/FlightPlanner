@@ -185,8 +185,8 @@
             <div class="form-group">
                 <select id="flightRule" name="flightRule" required>
                     <option value="" disabled selected>Select Flight Rule Type</option>
-                    <option value="IFR">IFR</option>
                     <option value="VFR">VFR</option>
+                    <option value="IFR">IFR</option>
                 </select>
                 <label for="flightRule">Flight Rule Type</label>
             </div>
@@ -243,23 +243,23 @@
     </div>
     <script>
         document.getElementById('flightPlanForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = {
-                id: Date.now(),
-                callsign: document.getElementById('callsign').value,
-                aircraft: document.getElementById('aircraft').value,
-                flightRule: document.getElementById('flightRule').value,
-                cruisingLevel: document.getElementById('cruisingLevel').value,
-                departure: document.getElementById('departure').value,
-                arrival: document.getElementById('arrival').value,
-                sid: document.getElementById('sid').value || 'Radar Vectors'
-            };
-            let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
-            flightPlans.push(formData);
-            localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
-            alert('Flight plan submitted successfully!');
-            window.location.reload();
-        });
+    e.preventDefault();
+    const formData = {
+        id: Date.now(),
+        callsign: document.getElementById('callsign').value,
+        aircraft: document.getElementById('aircraft').value,
+        flightRule: '"' + document.getElementById('flightRule').value + '"', // Wrap in quotes
+        cruisingLevel: document.getElementById('cruisingLevel').value,
+        departure: document.getElementById('departure').value,
+        arrival: document.getElementById('arrival').value,
+        sid: document.getElementById('sid').value || 'Radar vectors'
+    };
+    let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
+    flightPlans.push(formData);
+    localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
+    alert('Flight plan submitted successfully!');
+    window.location.reload();
+});
 
         function filterOptions(searchInput, selectElement) {
             const filter = searchInput.value.toLowerCase();
