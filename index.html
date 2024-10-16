@@ -127,7 +127,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Apply same style to the search input */
         .search-box input {
             width: 100%;
             padding: 0.75rem 1rem;
@@ -180,8 +179,19 @@
                 </select>
                 <label for="aircraft">Aircraft</label>
             </div>
+            <div class="form-group">
+                <select id="flightRule" name="flightRule" required>
+                    <option value="" disabled selected>Select Flight Rule Type</option>
+                    <option value="VFR">VFR</option>
+                    <option value="IFR">IFR</option>
+                </select>
+                <label for="flightRule">Flight Rule Type</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="cruisingLevel" name="cruisingLevel" required placeholder=" ">
+                <label for="cruisingLevel">Cruising Level</label>
+            </div>
 
-            <!-- Search for Departure -->
             <div class="search-box">
                 <input type="text" id="departureSearch" placeholder="Search Departure Airport">
             </div>
@@ -204,7 +214,6 @@
                 <label for="departure">Departure</label>
             </div>
 
-            <!-- Search for Arrival -->
             <div class="search-box">
                 <input type="text" id="arrivalSearch" placeholder="Search Arrival Airport">
             </div>
@@ -226,11 +235,6 @@
                 </select>
                 <label for="arrival">Arrival</label>
             </div>
-
-            <div class="form-group">
-                <input type="text" id="cruisingLevel" name="cruisingLevel" required placeholder=" ">
-                <label for="cruisingLevel">Cruising Level</label>
-            </div>
             <button type="submit">Submit Flight Plan</button>
         </form>
     </div>
@@ -241,6 +245,7 @@
                 id: Date.now(),
                 callsign: document.getElementById('callsign').value,
                 aircraft: document.getElementById('aircraft').value,
+                flightRule: document.getElementById('flightRule').value,
                 cruisingLevel: document.getElementById('cruisingLevel').value,
                 departure: document.getElementById('departure').value,
                 arrival: document.getElementById('arrival').value
