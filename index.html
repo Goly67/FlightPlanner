@@ -122,6 +122,17 @@
         button:active {
             transform: translateY(1px);
         }
+
+        .search-box {
+            margin-bottom: 1rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid var(--primary-color);
+        }
     </style>
 </head>
 <body>
@@ -157,22 +168,12 @@
                 </select>
                 <label for="aircraft">Aircraft</label>
             </div>
-            <div class="form-group">
-                <select id="flightType" name="flightType" required>
-                    <option value="" disabled selected></option>
-                    <option value="IFR">IFR</option>
-                    <option value="VFR">VFR</option>
-                </select>
-                <label for="flightType">IFR/VFR</label>
+
+            <!-- Search for Departure -->
+            <div class="search-box">
+                <input type="text" id="departureSearch" placeholder="Search Departure Airport">
             </div>
-            <div class="form-group">
-                <input type="text" id="sid" name="sid" placeholder=" ">
-                <label for="sid">SID (Optional)</label>
-            </div>
-            <div class="form-group">
-                <input type="text" id="cruisingLevel" name="cruisingLevel" required placeholder=" ">
-                <label for="cruisingLevel">Cruising Level</label>
-            </div>
+
             <div class="form-group">
                 <select id="departure" name="departure" required>
                     <option value="" disabled selected>Select Departure</option>
@@ -190,6 +191,12 @@
                 </select>
                 <label for="departure">Departure</label>
             </div>
+
+            <!-- Search for Arrival -->
+            <div class="search-box">
+                <input type="text" id="arrivalSearch" placeholder="Search Arrival Airport">
+            </div>
+
             <div class="form-group">
                 <select id="arrival" name="arrival" required>
                     <option value="" disabled selected>Select Arrival</option>
@@ -207,6 +214,11 @@
                 </select>
                 <label for="arrival">Arrival</label>
             </div>
+
+            <div class="form-group">
+                <input type="text" id="cruisingLevel" name="cruisingLevel" required placeholder=" ">
+                <label for="cruisingLevel">Cruising Level</label>
+            </div>
             <button type="submit">Submit Flight Plan</button>
         </form>
     </div>
@@ -217,18 +229,33 @@
                 id: Date.now(),
                 callsign: document.getElementById('callsign').value,
                 aircraft: document.getElementById('aircraft').value,
-                flightType: document.getElementById('flightType').value,
-                sid: document.getElementById('sid').value,
                 cruisingLevel: document.getElementById('cruisingLevel').value,
                 departure: document.getElementById('departure').value,
-                arrival: document.getElementById('arrival').value,
-                squawk: ''
+                arrival: document.getElementById('arrival').value
             };
             let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
             flightPlans.push(formData);
             localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
             alert('Flight plan submitted successfully!');
-            window.location.reload(); // Reload the page after submission
+            window.location.reload();
+        });
+
+        function filterOptions(searchInput, selectElement) {
+            const filter = searchInput.value.toLowerCase();
+            const options = selectElement.options;
+            for (let i = 0; i < options.length; i++) {
+                const option = options[i];
+                const text = option.text.toLowerCase();
+                option.style.display = text.includes(filter) ? '' : 'none';
+            }
+        }
+
+        document.getElementById('departureSearch').addEventListener('input', function() {
+            filterOptions(this, document.getElementById('departure'));
+        });
+
+        document.getElementById('arrivalSearch').addEventListener('input', function() {
+            filterOptions(this, document.getElementById('arrival'));
         });
     </script>
 </body>
