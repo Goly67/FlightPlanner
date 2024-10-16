@@ -154,9 +154,6 @@
                 <input type="text" id="callsign" name="callsign" required placeholder=" ">
                 <label for="callsign">Callsign</label>
             </div>
-            <div class="search-box">
-                <input type="text" id="aircraftSearch" placeholder="Search Aircraft">
-            </div>
             <div class="form-group">
                 <select id="aircraft" name="aircraft" required>
                     <option value="" disabled selected>Select Aircraft</option>
@@ -194,72 +191,40 @@
                 <input type="text" id="cruisingLevel" name="cruisingLevel" required placeholder=" ">
                 <label for="cruisingLevel">Cruising Level</label>
             </div>
-                        <div class="form-group">
-                <input type="text" id="sid" name="sid" placeholder="">
+            <div class="form-group">
+                <input type="text" id="sid" name="sid" placeholder=" ">
                 <label for="sid">SID (Optional)</label>
             </div>
-            <div class="search-box">
-                <input type="text" id="departureSearch" placeholder="Search Departure Airport">
+            <div class="form-group">
+                <input type="text" id="departure" name="departure" required placeholder=" ">
+                <label for="departure">Departure Airport</label>
             </div>
             <div class="form-group">
-                <select id="departure" name="departure" required>
-                    <option value="" disabled selected>Select Departure</option>
-                    <option value="MDAB">Arroyo Barril [MDAB]</option>
-                    <option value="MDCR">Cabo Rojo [MDCR]</option>
-                    <option value="MDST">Cibao [MDST]</option>
-                    <option value="MDPC">Punta Cana [MDPC]</option>
-                    <option value="EFKT">Kittilä [EFKT]</option>
-                    <option value="MTCA">Antoine-Simon [MTCA]</option>
-                    <option value="LYTV">Tivat [LYTV]</option>
-                    <option value="GCLP">Gran Canaria [GCLP]</option>
-                    <option value="LEMH">Menorca [LEMH]</option>
-                    <option value="EGKK">Gatwick [EGKK]</option>
-                    <option value="EGHI">Southampton [EGHI]</option>
-                </select>
-                <label for="departure">Departure</label>
-            </div>
-            <div class="search-box">
-                <input type="text" id="arrivalSearch" placeholder="Search Arrival Airport">
-            </div>
-            <div class="form-group">
-                <select id="arrival" name="arrival" required>
-                    <option value="" disabled selected>Select Arrival</option>
-                    <option value="MDAB">Arroyo Barril [MDAB]</option>
-                    <option value="MDCR">Cabo Rojo [MDCR]</option>
-                    <option value="MDST">Cibao [MDST]</option>
-                    <option value="MDPC">Punta Cana [MDPC]</option>
-                    <option value="EFKT">Kittilä [EFKT]</option>
-                    <option value="MTCA">Antoine-Simon [MTCA]</option>
-                    <option value="LYTV">Tivat [LYTV]</option>
-                    <option value="GCLP">Gran Canaria [GCLP]</option>
-                    <option value="LEMH">Menorca [LEMH]</option>
-                    <option value="EGKK">Gatwick [EGKK]</option>
-                    <option value="EGHI">Southampton [EGHI]</option>
-                </select>
-                <label for="arrival">Arrival</label>
+                <input type="text" id="arrival" name="arrival" required placeholder=" ">
+                <label for="arrival">Arrival Airport</label>
             </div>
             <button type="submit">Submit Flight Plan</button>
         </form>
     </div>
     <script>
-        document.getElementById('flightPlanForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = {
-        id: Date.now(),
-        callsign: document.getElementById('callsign').value,
-        aircraft: document.getElementById('aircraft').value,
-        flightRule: document.getElementById('flightRule').value,
-        cruisingLevel: document.getElementById('cruisingLevel').value,
-        departure: document.getElementById('departure').value,
-        arrival: document.getElementById('arrival').value,
-        sid: document.getElementById('sid').value || 'Radar vectors'
-    };
-    let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
-    flightPlans.push(formData);
-    localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
-    alert('Flight plan submitted successfully!');
-    window.location.reload();
-});
+         document.getElementById('flightPlanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = {
+                id: Date.now(),
+                callsign: document.getElementById('callsign').value,
+                aircraft: document.getElementById('aircraft').value,
+                flightRule: document.getElementById('flightRule').value,
+                cruisingLevel: document.getElementById('cruisingLevel').value,
+                departure: document.getElementById('departure').value,
+                arrival: document.getElementById('arrival').value,
+                sid: document.getElementById('sid').value || 'Radar vectors'
+            };
+            let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
+            flightPlans.push(formData);
+            localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
+            alert('Flight plan submitted successfully!');
+            window.location.reload();
+        });
 
         function filterOptions(searchInput, selectElement) {
             const filter = searchInput.value.toLowerCase();
