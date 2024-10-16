@@ -38,6 +38,7 @@
             width: 100%;
             max-width: 500px;
             backdrop-filter: blur(10px);
+            box-sizing: border-box;
         }
 
         h1 {
@@ -70,7 +71,7 @@
         }
 
         input, select {
-            width: 500px;
+            width: 100%;
             padding: 0.75rem 1rem;
             border: 2px solid var(--primary-color);
             border-radius: 8px;
@@ -78,6 +79,7 @@
             color: var(--text-color);
             background-color: rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
+            box-sizing: border-box;
         }
 
         input:focus, select:focus {
@@ -107,6 +109,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
+            width: 100%;
         }
 
         button:hover {
@@ -188,7 +191,7 @@
                 callsign: document.getElementById('callsign').value,
                 aircraft: document.getElementById('aircraft').value,
                 flightType: document.getElementById('flightType').value,
-                sid: document.getElementById('sid').value, // No longer required
+                sid: document.getElementById('sid').value,
                 cruisingLevel: document.getElementById('cruisingLevel').value,
                 departure: document.getElementById('departure').value,
                 arrival: document.getElementById('arrival').value,
