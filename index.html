@@ -170,8 +170,8 @@
                 <label for="cruisingLevel">Cruising Level</label>
             </div>
             <div class="form-group">
-                <input type="text" id="squawk" name="squawk" maxlength="4" required placeholder=" " oninput="this.value = this.value.toUpperCase();">
-                <label for="squawk">Squawk</label>
+                <input type="text" id="squawk" name="squawk" maxlength="4" required placeholder=" " oninput="this.value = this.value.replace(/[^0-9]/g, '')"> 
+            <label for="squawk">Squawk</label>
             </div>
             <div class="form-group">
                 <input type="text" id="sid" name="sid" placeholder=" ">
