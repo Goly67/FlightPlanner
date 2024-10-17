@@ -122,6 +122,13 @@
         button:active {
             transform: translateY(1px);
         }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
         
     </style>
 </head>
@@ -187,11 +194,11 @@
                 <label for="arrival">Arrival Airport</label>
             </div>
             <button type="submit">Submit Flight Plan</button>
-            <div class="button-group">
-                <button type="button" onclick="window.location.href = 'flight_plan_editor.html'">Flight Plan Editor</button>
-                <button type="button" onclick="window.location.href = 'flight_plan_viewer.html'">Flight Plan Viewer</button>
-            </div>
         </form>
+        <div class="button-group">
+            <button type="button" onclick="window.location.href = 'flight_plan_editor.html'">Flight Plan Editor</button>
+            <button type="button" onclick="window.location.href = 'flight_plan_viewer.html'">Flight Plan Viewer</button>
+        </div>
     </div>
     <script>
         document.getElementById('flightPlanForm').addEventListener('submit', function(e) {
