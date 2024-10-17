@@ -166,7 +166,7 @@
                 <label for="flightRule">Flight Rule Type</label>
             </div>
             <div class="form-group">
-                <input type="text" id="cruisingLevel" name="cruisingLevel" required placeholder=" ">
+                <input type="text" id="cruisingLevel" maxlength="3" name="cruisingLevel" required placeholder=" " oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 <label for="cruisingLevel">Cruising Level</label>
             </div>
             <div class="form-group">
