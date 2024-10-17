@@ -58,17 +58,13 @@
         }
 
         .form-group {
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align label and input to the left */
         }
 
         label {
-            position: absolute;
-            top: 0.75rem;
-            left: 1rem;
-            color: var(--text-color);
-            font-size: 0.8rem; /* Reduced font size */
-            transition: all 0.3s ease;
-            pointer-events: none;
+            margin-bottom: 0.2rem; /* Add a small margin between label and input */
         }
 
         input, select {
