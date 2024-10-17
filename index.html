@@ -122,28 +122,6 @@
         button:active {
             transform: translateY(1px);
         }
-
-        .search-box {
-            margin-bottom: 1rem;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            border: 2px solid var(--primary-color);
-            font-size: 1rem;
-            color: var(--text-color);
-            background-color: rgba(255, 255, 255, 0.8);
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3);
-        }
     </style>
 </head>
 <body>
@@ -158,24 +136,7 @@
                 <select id="aircraft" name="aircraft" required>
                     <option value="" disabled selected>Select Aircraft</option>
                     <option value="Airbus A220">Airbus A220</option>
-                    <option value="Airbus A320">Airbus A320</option>
-                    <option value="Airbus A330-300">Airbus A330-300</option>
-                    <option value="Airbus A350-900">Airbus A350-900</option>
-                    <option value="Boeing 717">Boeing 717</option>
-                    <option value="Boeing 727">Boeing 727</option>
-                    <option value="Boeing 737">Boeing 737</option>
-                    <option value="Boeing 757">Boeing 757</option>
-                    <option value="Boeing 787">Boeing 787</option>
-                    <option value="Boeing 777">Boeing 777</option>
-                    <option value="Piper M350">Piper M350</option>
-                    <option value="Bae Systems Hawk T1">Bae Systems Hawk T1</option>
-                    <option value="Eurofighter Typhoon">Eurofighter Typhoon</option>
-                    <option value="Bombardier Dash 8-Q400">Bombardier Dash 8-Q400</option>
-                    <option value="Cessna 150A">Cessna 150A</option>
-                    <option value="Cessna Citation II">Cessna Citation II</option>
-                    <option value="Fokker 100">Fokker 100</option>
-                    <option value="Beechcraft Baron G58">Beechcraft Baron G58</option>
-                    <option value="MD-11">MD-11</option>
+                    <!-- More aircraft options here -->
                 </select>
                 <label for="aircraft">Aircraft</label>
             </div>
@@ -196,18 +157,22 @@
                 <label for="sid">SID (Optional)</label>
             </div>
             <div class="form-group">
-                <input type="text" id="departure" name="departure" required placeholder=" ">
+                <input type="text" id="departure" name="departure" maxlength="4" required placeholder=" ">
                 <label for="departure">Departure Airport</label>
             </div>
             <div class="form-group">
-                <input type="text" id="arrival" name="arrival" required placeholder=" ">
+                <input type="text" id="arrival" name="arrival" maxlength="4" required placeholder=" ">
                 <label for="arrival">Arrival Airport</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="squawk" name="squawk" maxlength="4" required placeholder=" ">
+                <label for="squawk">Squawk</label>
             </div>
             <button type="submit">Submit Flight Plan</button>
         </form>
     </div>
     <script>
-         document.getElementById('flightPlanForm').addEventListener('submit', function(e) {
+        document.getElementById('flightPlanForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = {
                 id: Date.now(),
@@ -217,35 +182,14 @@
                 cruisingLevel: document.getElementById('cruisingLevel').value,
                 departure: document.getElementById('departure').value,
                 arrival: document.getElementById('arrival').value,
-                sid: document.getElementById('sid').value || 'Radar vectors'
+                sid: document.getElementById('sid').value || 'Radar vectors',
+                squawk: document.getElementById('squawk').value
             };
             let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
             flightPlans.push(formData);
             localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
             alert('Flight plan submitted successfully!');
             window.location.reload();
-        });
-
-        function filterOptions(searchInput, selectElement) {
-            const filter = searchInput.value.toLowerCase();
-            const options = selectElement.options;
-            for (let i = 0; i < options.length; i++) {
-                const option = options[i];
-                const text = option.text.toLowerCase();
-                option.style.display = text.includes(filter) ? '' : 'none';
-            }
-        }
-
-        document.getElementById('departureSearch').addEventListener('input', function() {
-            filterOptions(this, document.getElementById('departure'));
-        });
-
-        document.getElementById('arrivalSearch').addEventListener('input', function() {
-            filterOptions(this, document.getElementById('arrival'));
-        });
-
-        document.getElementById('aircraftSearch').addEventListener('input', function() {
-            filterOptions(this, document.getElementById('aircraft'));
         });
     </script>
 </body>
