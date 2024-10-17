@@ -129,7 +129,28 @@
             gap: 1rem;
             margin-top: 1rem;
         }
-        
+
+        .zoom-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .zoom-buttons button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background-color: #ddd;
+            color: #333;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .zoom-buttons button:hover {
+            background-color: #ccc;
+        }
     </style>
 </head>
 <body>
@@ -199,6 +220,10 @@
             <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlanEditor/'">Flight Plan Editor</button>
             <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlanViewer/'">Flight Plan Viewer</button>
         </div>
+        <div class="zoom-buttons">
+            <button onclick="zoomIn()">+</button>
+            <button onclick="zoomOut()">-</button>
+        </div>
     </div>
     <script>
         document.getElementById('flightPlanForm').addEventListener('submit', function(e) {
@@ -236,6 +261,14 @@
             // Optionally clear the form after submission
             document.getElementById('flightPlanForm').reset();
         });
+
+        function zoomIn() {
+            document.body.style.zoom = parseFloat(document.body.style.zoom || 1) + 0.1;
+        }
+
+        function zoomOut() {
+            document.body.style.zoom = parseFloat(document.body.style.zoom || 1) - 0.1;
+        }
     </script>
 </body>
 </html>
