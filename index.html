@@ -170,7 +170,7 @@
                 <label for="cruisingLevel">Cruising Level</label>
             </div>
             <div class="form-group">
-                <input type="text" id="squawk" name="squawk" maxlength="4" required placeholder=" ">
+                <input type="text" id="squawk" name="squawk" maxlength="4" required placeholder=" " oninput="this.value = this.value.toUpperCase();">
                 <label for="squawk">Squawk</label>
             </div>
             <div class="form-group">
@@ -178,11 +178,11 @@
                 <label for="sid">SID (Optional)</label>
             </div>
             <div class="form-group">
-                <input type="text" id="departure" name="departure" maxlength="4" required placeholder=" ">
+                <input type="text" id="departure" name="departure" maxlength="4" required placeholder=" " oninput="this.value = this.value.toUpperCase();">
                 <label for="departure">Departure Airport</label>
             </div>
             <div class="form-group">
-                <input type="text" id="arrival" name="arrival" maxlength="4" required placeholder=" ">
+                <input type="text" id="arrival" name="arrival" maxlength="4" required placeholder=" " oninput="this.value = this.value.toUpperCase();">
                 <label for="arrival">Arrival Airport</label>
             </div>
             <button type="submit">Submit Flight Plan</button>
@@ -191,21 +191,31 @@
     <script>
         document.getElementById('flightPlanForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            const departure = document.getElementById('departure').value;
+            const arrival = document.getElementById('arrival').value;
+            const squawk = document.getElementById('squawk').value;
+
+            if (!departure || !arrival || !squawk) {
+                alert("Departure, Arrival, and Squawk are required fields!");
+                return;  // Don't submit if any of these fields are empty
+            }
+
             const formData = {
                 id: Date.now(),
                 callsign: document.getElementById('callsign').value,
                 aircraft: document.getElementById('aircraft').value,
                 flightRule: document.getElementById('flightRule').value,
                 cruisingLevel: document.getElementById('cruisingLevel').value,
-                departure: document.getElementById('departure').value,
-                arrival: document.getElementById('arrival').value,
+                departure: departure,
+                arrival: arrival,
                 sid: document.getElementById('sid').value || 'Radar vectors',
-                squawk: document.getElementById('squawk').value
+                squawk: squawk
             };
+
             let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
             flightPlans.push(formData);
             localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
-            alert('Flight plan submitted successfully!');
             window.location.reload();
         });
     </script>
