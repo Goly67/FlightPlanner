@@ -218,6 +218,23 @@
             localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
             window.location.reload();
         });
+
+        function submitFlightPlan(flightPlan) {
+    // Assume flightPlan is an object containing all the necessary flight plan data
+    const flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
+
+    // Assign a unique ID (assuming each plan has an id)
+    flightPlan.id = flightPlans.length > 0 ? flightPlans[flightPlans.length - 1].id + 1 : 1;
+
+    // Add the new flight plan to the storage
+    flightPlans.push(flightPlan);
+    localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
+
+    // Emit a custom event to notify other parts of the application
+    const event = new Event('flightPlanUpdated');
+    window.dispatchEvent(event);
+}
+
     </script>
 </body>
 </html>
