@@ -114,8 +114,4 @@ return "3" + randomPart.slice(1); // Ensures the squawk starts with 3
 }
 
 // Automatically generate a squawk code and set it in the squawk input field when the page loads
-<<<<<<< HEAD
 document.getElementById('squawk').value = generateRandomSquawk();
-=======
-document.getElementById('squawk').value = generateRandomSquawk();
->>>>>>> 4a9ed8fe2644d7494c22bd3e0fabeaf6e4b4e9a8
