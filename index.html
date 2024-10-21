@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://www.iconpacks.net/icons/2/free-airplane-icon-1755-thumb.png" type="image/x-icon">
+    <title>Flight Planning Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            background-image: url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 0.8rem;
+            /* Reduced padding */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            /* Reduced max-width */
+            backdrop-filter: blur(10px);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+            /* Reduced margin */
+            font-size: 1.8rem;
+            /* Reduced font size */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        form {
+            display: grid;
+            gap: 0.8rem;
+            /* Reduced gap */
+        }
+
+        .form-group {
+            position: relative;
+            display: flex;
+            /* Make form-group a flex container */
+            align-items: center;
+            /* Align items to the center */
+        }
+
+        label {
+            color: var(--text-color);
+            font-size: 0.8rem;
+            /* Reduced font size */
+            pointer-events: none;
+            /* Add padding to the label */
+            padding: 0.4rem 0.6rem;
+            /* Set background color for better visibility */
+            /* Make label a block element */
+            display: relative;
+            /* Add margin to the label */
+            margin-right: 0.5rem;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.4rem 0.6rem;
+            /* Reduced padding */
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            /* Reduced font size */
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.8);
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.6rem;
+            /* Reduced padding */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            /* Reduced font size */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.6rem;
+            /* Reduced gap */
+            margin-top: 0.6rem;
+            /* Reduced margin */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Flight Planning</h1>
+        <form id="flightPlanForm">
+            <div class="form-group">
+                <input type="text" id="callsign" name="callsign" required placeholder="Callsign"
+                    oninput="this.value = this.value.toUpperCase()">
+            </div>
+            <div class="form-group">
+                <select id="aircraft" name="aircraft" required>
+                    <option value="" disabled selected>Select Aircraft</option>
+                    <option value="Airbus A220">Airbus A220</option>
+                    <option value="Airbus A320">Airbus A320</option>
+                    <option value="Airbus A330-300">Airbus A330-300</option>
+                    <option value="Airbus A350-900">Airbus A350-900</option>
+                    <option value="Boeing 717">Boeing 717</option>
+                    <option value="Boeing 727">Boeing 727</option>
+                    <option value="Boeing 737">Boeing 737</option>
+                    <option value="Boeing 757">Boeing 757</option>
+                    <option value="Boeing 787">Boeing 787</option>
+                    <option value="Boeing 777">Boeing 777</option>
+                    <option value="Piper M350">Piper M350</option>
+                    <option value="Bae Systems Hawk T1">Bae Systems Hawk T1</option>
+                    <option value="Eurofighter Typhoon">Eurofighter Typhoon</option>
+                    <option value="Bombardier Dash 8-Q400">Bombardier Dash 8-Q400</option>
+                    <option value="Cessna 150A">Cessna 150A</option>
+                    <option value="Cessna Citation II">Cessna Citation II</option>
+                    <option value="Fokker 100">Fokker 100</option>
+                    <option value="Beechcraft Baron G58">Beechcraft Baron G58</option>
+                    <option value="MD-11">MD-11</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="flightRule" name="flightRule" required>
+                    <option value="" disabled selected>Select Flight Rule Type</option>
+                    <option value="IFR">IFR</option>
+                    <option value="VFR">VFR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" id="cruisingLevel" maxlength="3" name="cruisingLevel" required
+                    placeholder="Cruising Level" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="30">
+            </div>
+            <div class="form-group">
+                <input type="text" id="squawk" name="squawk" maxlength="4" required placeholder="Squawk"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>
+            <div class="form-group">
+                <input type="text" id="sid" name="sid" placeholder="SID (Optional)" oninput="this.value = this.value.toUpperCase()">
+            </div>
+            <div class="form-group">
+                <input type="text" id="departure" name="departure" maxlength="4" required
+                    placeholder="Departure Airport"
+                    oninput="this.value = this.value.replace(/[^A-Za-z]/g, '').toUpperCase()">
+            </div>
+            <div class="form-group">
+                <input type="text" id="arrival" name="arrival" maxlength="4" required placeholder="Arrival Airport"
+                    oninput="this.value = this.value.replace(/[^A-Za-z]/g, '').toUpperCase()">
+            </div>
+            <button type="submit">Submit Flight Plan</button>
+        </form>
+        <div class="button-group">
+            <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlanEditor/'">Flight
+                Plan Editor</button>
+            <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlanViewer/'">Flight
+                Plan Viewer</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('flightPlanForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const departure = document.getElementById('departure').value;
+            const arrival = document.getElementById('arrival').value;
+            const squawk = document.getElementById('squawk').value;
+            const cruisingLevel = document.getElementById('cruisingLevel').value;
+
+            if (!departure || !arrival || !squawk || !cruisingLevel) {
+                alert("Departure, Arrival, Squawk, and Cruising Level are required fields!");
+                return;  // Don't submit if any of these fields are empty
+            }
+
+            const formData = {
+                id: Date.now(),
+                callsign: document.getElementById('callsign').value,
+                aircraft: document.getElementById('aircraft').value,
+                flightRule: document.getElementById('flightRule').value,
+                cruisingLevel: document.getElementById('cruisingLevel').value,
+                departure: departure,
+                arrival: arrival,
+                sid: document.getElementById('sid').value || 'Radar vectors',
+                squawk: squawk
+            };
+
+            let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
+            flightPlans.push(formData);
+            localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
+
+            // Dispatch a custom event to notify other pages about the new flight plan
+            const event = new Event('flightPlanUpdated');
+            window.dispatchEvent(event);
+
+            // Optionally clear the form after submission
+            document.getElementById('flightPlanForm').reset();
+        });
+
+        document.getElementById('aircraft').addEventListener('input', function (e) {
+            document.getElementById('flightRule').focus(); // Move focus to the next field
+        });
+
+        document.getElementById('flightRule').addEventListener('input', function (e) {
+            document.getElementById('cruisingLevel').focus(); // Move focus to the next field
+        });
+
+        // Add event listener for Enter key press in the cruisingLevel input field
+        document.getElementById('cruisingLevel').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevent form submission
+                document.getElementById('squawk').focus(); // Move focus to the next field
+            }
+        });
+        document.getElementById('squawk').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevent form submission
+                document.getElementById('sid').focus(); // Move focus to the next field
+            }
+        });
+        document.getElementById('sid').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevent form submission
+                document.getElementById('departure').focus(); // Move focus to the next field
+            }
+        });
+        document.getElementById('departure').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevent form submission
+                document.getElementById('arrival').focus(); // Move focus to the next field
+            }
+        });
+        document.getElementById('arrival').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                document.getElementById('flightPlanForm').submit(); // Submit the form
+            }
+        });
+
+        // Load existing flight plans from local storage
+        function loadFlightPlans() {
+            return JSON.parse(localStorage.getItem('flightPlans')) || []; 
+        }
+
+        // Save flight plans to local storage
+        function saveFlightPlans(flightPlans) {
+            localStorage.setItem('flightPlans', JSON.stringify(flightPlans)); 
+        }
+
+        // Load flight plans on page load
+        let flightPlans = loadFlightPlans();
+
+        // ... (rest of your JavaScript code)
+
+        document.getElementById('flightPlanForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // ... (your existing form submission logic)
+
+            // Update the flightPlans array and save to local storage
+            flightPlans.push(formData);
+            saveFlightPlans(flightPlans);
+        });
+
+        // ... (rest of your JavaScript code)
+
+        // Function to update the flight plans when a new plan is created
+        window.addEventListener('flightPlanUpdated', function() {
+            flightPlans = loadFlightPlans(); // Reload flight plans after the update
+        });
+
+
+// Function to generate a random squawk code starting with "3"
+function generateRandomSquawk() {
+    const randomPart = Math.floor(1000 + Math.random() * 9000).toString(); // Generates a random 4-digit number
+    return "3" + randomPart.slice(1); // Ensures the squawk starts with 3
+}
+
+// Automatically generate a squawk code and set it in the squawk input field when the page loads
+document.getElementById('squawk').value = generateRandomSquawk();
+
+    </script>
+</body>
+</html>
