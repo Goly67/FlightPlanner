@@ -23,6 +23,7 @@ document.getElementById('flightPlanForm').addEventListener('submit', function (e
         squawk: squawk
     };
 
+    // Declare flightPlans inside the event listener
     let flightPlans = JSON.parse(localStorage.getItem('flightPlans')) || [];
     flightPlans.push(formData);
     localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
@@ -76,12 +77,12 @@ document.getElementById('arrival').addEventListener('keydown', function (e) {
 
 // Load existing flight plans from local storage
 function loadFlightPlans() {
-    return JSON.parse(localStorage.getItem('flightPlans')) || []; 
+    return JSON.parse(localStorage.getItem('flightPlans')) || [];
 }
 
 // Save flight plans to local storage
 function saveFlightPlans(flightPlans) {
-    localStorage.setItem('flightPlans', JSON.stringify(flightPlans)); 
+    localStorage.setItem('flightPlans', JSON.stringify(flightPlans));
 }
 
 // Load flight plans on page load
@@ -102,15 +103,15 @@ document.getElementById('flightPlanForm').addEventListener('submit', function (e
 // ... (rest of your JavaScript code)
 
 // Function to update the flight plans when a new plan is created
-window.addEventListener('flightPlanUpdated', function() {
+window.addEventListener('flightPlanUpdated', function () {
     flightPlans = loadFlightPlans(); // Reload flight plans after the update
 });
 
 
 // Function to generate a random squawk code starting with "3"
 function generateRandomSquawk() {
-const randomPart = Math.floor(1000 + Math.random() * 9000).toString(); // Generates a random 4-digit number
-return "3" + randomPart.slice(1); // Ensures the squawk starts with 3
+    const randomPart = Math.floor(1000 + Math.random() * 9000).toString(); // Generates a random 4-digit number
+    return "3" + randomPart.slice(1); // Ensures the squawk starts with 3
 }
 
 // Automatically generate a squawk code and set it in the squawk input field when the page loads
