@@ -44,36 +44,30 @@ document.getElementById('flightRule').addEventListener('input', function (e) {
     document.getElementById('cruisingLevel').focus(); // Move focus to the next field
 });
 
-// Add event listener for Enter key press in the cruisingLevel input field
-document.getElementById('cruisingLevel').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        e.preventDefault(); // Prevent form submission
-        document.getElementById('squawk').focus(); // Move focus to the next field
+function handleUpDownKeys(e) {
+    if (e.key === 'ArrowUp') {
+      // Logic to move to the previous input field
+      const currentElement = e.target;
+      const allInputs = document.querySelectorAll('input');
+      const currentIndex = Array.from(allInputs).indexOf(currentElement);
+      if (currentIndex > 0) {
+        allInputs[currentIndex - 1].focus();
+      }
+    } else if (e.key === 'ArrowDown') {
+      // Logic to move to the next input field
+      const currentElement = e.target;
+      const allInputs = document.querySelectorAll('input');
+      const currentIndex = Array.from(allInputs).indexOf(currentElement);
+      if (currentIndex < allInputs.length - 1) {
+        allInputs[currentIndex + 1].focus();
+      }
     }
-});
-document.getElementById('squawk').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        e.preventDefault(); // Prevent form submission
-        document.getElementById('sid').focus(); // Move focus to the next field
-    }
-});
-document.getElementById('sid').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        e.preventDefault(); // Prevent form submission
-        document.getElementById('departure').focus(); // Move focus to the next field
-    }
-});
-document.getElementById('departure').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        e.preventDefault(); // Prevent form submission
-        document.getElementById('arrival').focus(); // Move focus to the next field
-    }
-});
-document.getElementById('arrival').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        document.getElementById('flightPlanForm').submit(); // Submit the form
-    }
-});
+  }
+  
+  // Add event listener for up and down arrow keys to all input fields
+  document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('keyup', handleUpDownKeys);
+  });
 
 // Load existing flight plans from local storage
 function loadFlightPlans() {
@@ -88,7 +82,6 @@ function saveFlightPlans(flightPlans) {
 // Load flight plans on page load
 let flightPlans = loadFlightPlans();
 
-// ... (rest of your JavaScript code)
 
 document.getElementById('flightPlanForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -100,7 +93,6 @@ document.getElementById('flightPlanForm').addEventListener('submit', function (e
     saveFlightPlans(flightPlans);
 });
 
-// ... (rest of your JavaScript code)
 
 // Function to update the flight plans when a new plan is created
 window.addEventListener('flightPlanUpdated', function () {
