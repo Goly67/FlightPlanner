@@ -1,3 +1,8 @@
+// Automatically focus on the 'callsign' input field when the page loads
+window.onload = function() {
+    document.getElementById('callsign').focus();
+};
+
 document.getElementById('flightPlanForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
