@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="docs/style.css" />
     <title>Flight Planner</title>
 </head>
+
 <body>
     <div class="container">
         <h1>Flight Planning</h1>
@@ -55,7 +57,8 @@
                     oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             </div>
             <div class="form-group">
-                <input type="text" id="sid" name="sid" placeholder="SID (Optional)" oninput="this.value = this.value.toUpperCase()">
+                <input type="text" id="sid" name="sid" placeholder="SID (Optional)"
+                    oninput="this.value = this.value.toUpperCase()">
             </div>
             <div class="form-group">
                 <input type="text" id="departure" name="departure" maxlength="4" required
@@ -71,11 +74,17 @@
         <div class="button-group">
             <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlanEditor/'">Flight
                 Plan Editor</button>
-                <!--https://goly67.github.io/Under-Construction/-->
+            <!--https://goly67.github.io/Under-Construction/-->
             <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlanViewer/'">Flight
                 Plan Viewer</button>
         </div>
     </div>
+    <div class="iframe-container">
+        <iframe
+            src="https://docs.google.com/spreadsheets/d/1yKmcfPDVcCA2dVy_8moxzbReB1wkthHZFQSbYfCak-0/edit?resourcekey=&gid=2101528138#gid=2101528138"
+            frameborder="0"></iframe>
+    </div>
     <script src="docs/script.js" defer></script>
 </body>
+
 </html>
